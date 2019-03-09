@@ -4,7 +4,7 @@ import {
   FlatList, TouchableOpacity, RefreshControl, Image,
 } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, Text, Button,
+  Container, Content, Card, CardItem, Body, Text, Button, H3
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
@@ -32,8 +32,8 @@ const RecipeListing = ({
     <Container>
       <Content padder>
         <Header
-          title="Top Recipes"
-          content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
+          title="List of Walks"
+          content="Experience a walk or get lost in one. Choose your route below to get started."
         />
 
         <FlatList
@@ -67,8 +67,8 @@ const RecipeListing = ({
                     small
                     onPress={() => onPress(item)}
                   >
-                    <Text>
-                      View Recipe
+                    <Text style={{ color: 'black' }}>
+                      View Walk
                     </Text>
                   </Button>
                   <Spacer size={5} />

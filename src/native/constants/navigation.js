@@ -2,7 +2,7 @@ import Colors from '../../../native-base-theme/variables/commonColor';
 
 export default {
   navbarProps: {
-    navigationBarStyle: { backgroundColor: 'white' },
+    navigationBarStyle: { backgroundColor: '#CDFE49' },
     titleStyle: {
       color: Colors.textColor,
       alignSelf: 'center',
@@ -20,6 +20,6 @@ export default {
   },
 
   icons: {
-    style: { color: 'white', height: 30, width: 30 },
+    style: { color: 'black', height: 30, width: 30 },
   },
 };
