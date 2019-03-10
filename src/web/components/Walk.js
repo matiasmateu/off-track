@@ -16,11 +16,11 @@ import ErrorMessages from '../../constants/errors';
 import Loading from './Loading';
 import Error from './Error';
 
-const RecipeView = ({
+const WalkView = ({
   error,
   loading,
-  recipes,
-  recipeId,
+  walks,
+  walkId,
 }) => {
   // Loading
   if (loading) return <Loading />;
@@ -28,24 +28,24 @@ const RecipeView = ({
   // Error
   if (error) return <Error content={error} />;
 
-  // Get this Recipe from all recipes
-  let recipe = null;
-  if (recipeId && recipes) {
-    recipe = recipes.find(item => parseInt(item.id, 10) === parseInt(recipeId, 10));
+  // Get this Walk from all walks
+  let walk = null;
+  if (walkId && walks) {
+    walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
   }
 
-  // Recipe not found
-  if (!recipe) return <Error content={ErrorMessages.recipe404} />;
+  // Walk not found
+  if (!walk) return <Error content={ErrorMessages.walk404} />;
 
   // Build Ingredients listing
-  const ingredients = recipe.ingredients.map(item => (
+  const ingredients = walk.ingredients.map(item => (
     <ListGroupItem key={`${item}`}>
       {item}
     </ListGroupItem>
   ));
 
   // Build Method listing
-  const method = recipe.method.map(item => (
+  const method = walk.method.map(item => (
     <ListGroupItem key={`${item}`}>
       {item}
     </ListGroupItem>
@@ -54,35 +54,35 @@ const RecipeView = ({
   return (
     <div>
       <Helmet>
-        <title>{recipe.title}</title>
+        <title>{walk.title}</title>
       </Helmet>
 
       <Row>
         <Col sm="12">
           <h1>
-            {recipe.title}
+            {walk.title}
           </h1>
           <p>
             by
             {' '}
-            {recipe.author}
+            {walk.author}
           </p>
         </Col>
       </Row>
       <Row>
-        <Col lg="4" className="recipe-view-card">
+        <Col lg="4" className="walk-view-card">
           <Card>
             <CardHeader>
-              About this recipe
+              About this walk
             </CardHeader>
             <CardBody>
               <CardText>
-                {recipe.body}
+                {walk.fullDescription}
               </CardText>
             </CardBody>
           </Card>
         </Col>
-        <Col lg="4" className="recipe-view-card">
+        <Col lg="4" className="walk-view-card">
           <Card>
             <CardHeader>
               Ingredients
@@ -92,7 +92,7 @@ const RecipeView = ({
             </ListGroup>
           </Card>
         </Col>
-        <Col lg="4" className="recipe-view-card">
+        <Col lg="4" className="walk-view-card">
           <Card>
             <CardHeader>
               Method
@@ -105,7 +105,7 @@ const RecipeView = ({
       </Row>
       <Row className="pb-3">
         <Col sm="12">
-          <Link className="btn btn-secondary" to="/recipes">
+          <Link className="btn btn-secondary" to="/walks">
             <i className="icon-arrow-left" />
             {' '}
             Back
@@ -116,15 +116,15 @@ const RecipeView = ({
   );
 };
 
-RecipeView.propTypes = {
+WalkView.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  recipeId: PropTypes.string.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  walkId: PropTypes.string.isRequired,
+  walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-RecipeView.defaultProps = {
+WalkView.defaultProps = {
   error: null,
 };
 
-export default RecipeView;
+export default WalkView;

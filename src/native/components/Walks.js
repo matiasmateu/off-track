@@ -12,10 +12,10 @@ import Error from './Error';
 import Header from './Header';
 import Spacer from './Spacer';
 
-const RecipeListing = ({
+const WalkListing = ({
   error,
   loading,
-  recipes,
+  walks,
   reFetch,
 }) => {
   // Loading
@@ -26,19 +26,19 @@ const RecipeListing = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
+  const onPress = item => Actions.walk({ match: { params: { id: String(item.id) } } });
 
   return (
     <Container>
       <Content padder>
         <Header
-          title="Top Recipes"
-          content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
+          title="Walks"
+          content="We want to know what moves and inspires you. We want to know you better. We are extremely curious what your thoughts and feelings are, so we decided to organize the so called ‘walks’."
         />
 
         <FlatList
-          numColumns={2}
-          data={recipes}
+          numColumns={1}
+          data={walks}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
@@ -46,7 +46,7 @@ const RecipeListing = ({
                   <Image
                     source={{ uri: item.image }}
                     style={{
-                      height: 100,
+                      height: 290,
                       width: null,
                       flex: 1,
                       borderRadius: 5,
@@ -58,7 +58,7 @@ const RecipeListing = ({
                 <Body>
                   <Spacer size={10} />
                   <Text style={{ fontWeight: '800' }}>
-                    {item.title}
+                    {item.name}
                   </Text>
                   <Spacer size={15} />
                   <Button
@@ -68,10 +68,10 @@ const RecipeListing = ({
                     onPress={() => onPress(item)}
                   >
                     <Text>
-                      View Recipe
+                      View Walk
                     </Text>
                   </Button>
-                  <Spacer size={5} />
+                  <Spacer size={20} />
                 </Body>
               </CardItem>
             </Card>
@@ -91,16 +91,16 @@ const RecipeListing = ({
   );
 };
 
-RecipeListing.propTypes = {
+WalkListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func,
 };
 
-RecipeListing.defaultProps = {
+WalkListing.defaultProps = {
   error: null,
   reFetch: null,
 };
 
-export default RecipeListing;
+export default WalkListing;
