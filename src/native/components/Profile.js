@@ -7,6 +7,18 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Header from './Header';
 
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+  },
+  backdropView: {
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    padding: 10,
+  },
+});
+
 const Profile = ({ member, logout }) => (
   <ImageBackground source={{ uri: 'http://www.cartotalk.com/uploads/monthly_10_2015/post-14-0-92490400-1445603136.png' }} style={styles.backgroundImage}>
   <Container>
@@ -14,15 +26,16 @@ const Profile = ({ member, logout }) => (
       <List>
         {(member && member.email)
           ? (
-            <View>
-              <Content padder>
+            <View >
+              <Content padder style={styles.backdropView}>
                 <Header
+                  
                   title={`Hi ${member.firstName},`}
                   content={`You are currently logged in as ${member.email}`}
                 />
               </Content>
 
-              <ListItem onPress={Actions.updateProfile} icon>
+              <ListItem style={styles.backdropView} onPress={Actions.updateProfile} icon>
                 <Left>
                   <Icon name="person-add" />
                 </Left>
@@ -32,7 +45,7 @@ const Profile = ({ member, logout }) => (
                   </Text>
                 </Body>
               </ListItem>
-              <ListItem onPress={logout} icon>
+              <ListItem style={styles.backdropView} onPress={logout} icon>
                 <Left>
                   <Icon name="power" />
                 </Left>
@@ -46,14 +59,14 @@ const Profile = ({ member, logout }) => (
           )
           : (
             <View>
-              <Content padder>
+              <Content padder style={styles.backdropView}>
                 <Header
                   title="Hi there,"
                   content="Please login to gain extra access"
                 />
               </Content>
 
-              <ListItem onPress={Actions.login} icon>
+              <ListItem style={styles.backdropView} onPress={Actions.login} icon>
                 <Left>
                   <Icon name="power" />
                 </Left>
@@ -63,7 +76,7 @@ const Profile = ({ member, logout }) => (
                   </Text>
                 </Body>
               </ListItem>
-              <ListItem onPress={Actions.signUp} icon>
+              <ListItem style={styles.backdropView} onPress={Actions.signUp} icon>
                 <Left>
                   <Icon name="add-circle" />
                 </Left>
@@ -73,7 +86,7 @@ const Profile = ({ member, logout }) => (
                   </Text>
                 </Body>
               </ListItem>
-              <ListItem onPress={Actions.forgotPassword} icon>
+              <ListItem style={styles.backdropView} onPress={Actions.forgotPassword} icon>
                 <Left>
                   <Icon name="help-buoy" />
                 </Left>
@@ -86,7 +99,7 @@ const Profile = ({ member, logout }) => (
             </View>
           )
         }
-        <ListItem onPress={Actions.locale} icon>
+        <ListItem style={styles.backdropView} onPress={Actions.locale} icon>
           <Left>
             <Icon name="ios-flag" />
           </Left>
@@ -101,15 +114,6 @@ const Profile = ({ member, logout }) => (
   </Container>
   </ImageBackground>
 );
-
-var styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    alignSelf: 'stretch',
-    width: null,
-  },
-});
-
 Profile.propTypes = {
   member: PropTypes.shape({}),
   logout: PropTypes.func.isRequired,
