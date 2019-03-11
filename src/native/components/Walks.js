@@ -32,13 +32,8 @@ const WalkListing = ({
     <Container>
       <Content padder>
         <Header
-<<<<<<< HEAD:src/native/components/Walks.js
-          title="Walks"
-          content="We want to know what moves and inspires you. We want to know you better. We are extremely curious what your thoughts and feelings are, so we decided to organize the so called ‘walks’."
-=======
           title="List of Walks"
           content="Experience a walk or get lost in one. Choose your route below to get started."
->>>>>>> design/basic-branding-layout:src/native/components/Recipes.js
         />
 
         <FlatList
@@ -72,26 +67,22 @@ const WalkListing = ({
                     small
                     onPress={() => onPress(item)}
                   >
-<<<<<<< HEAD:src/native/components/Walks.js
-                    <Text>
-=======
-                    <Text style={{ color: 'black' }}>
->>>>>>> design/basic-branding-layout:src/native/components/Recipes.js
-                      View Walk
+                  <Text style={{ color: 'black' }}>
+                    View Walk
                     </Text>
                   </Button>
-                  <Spacer size={20} />
+                <Spacer size={20} />
                 </Body>
               </CardItem>
             </Card>
-          )}
+      )}
           keyExtractor={keyExtractor}
-          refreshControl={(
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          )}
+        refreshControl={(
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={reFetch}
+          />
+        )}
         />
 
         <Spacer size={20} />

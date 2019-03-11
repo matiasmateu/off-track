@@ -50,13 +50,8 @@ const Index = (
 
         <Stack
           key="walks"
-<<<<<<< HEAD
           title="Walks"
-          icon={() => <Icon name="book" {...DefaultProps.icons} />}
-=======
-          title="WALKS"
           icon={() => <Icon name="walk" {...DefaultProps.icons} />}
->>>>>>> design/basic-branding-layout
           {...DefaultProps.navbarProps}
         >
           <Scene key="walks" component={WalksContainer} Layout={WalksComponent} />
