@@ -4,7 +4,7 @@ import {
   FlatList, TouchableOpacity, RefreshControl, Image,
 } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, Text, Button,
+  Container, Content, Card, CardItem, Body, Text, Button, H3
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
@@ -32,8 +32,13 @@ const WalkListing = ({
     <Container>
       <Content padder>
         <Header
+<<<<<<< HEAD:src/native/components/Walks.js
           title="Walks"
           content="We want to know what moves and inspires you. We want to know you better. We are extremely curious what your thoughts and feelings are, so we decided to organize the so called ‘walks’."
+=======
+          title="List of Walks"
+          content="Experience a walk or get lost in one. Choose your route below to get started."
+>>>>>>> design/basic-branding-layout:src/native/components/Recipes.js
         />
 
         <FlatList
@@ -67,7 +72,11 @@ const WalkListing = ({
                     small
                     onPress={() => onPress(item)}
                   >
+<<<<<<< HEAD:src/native/components/Walks.js
                     <Text>
+=======
+                    <Text style={{ color: 'black' }}>
+>>>>>>> design/basic-branding-layout:src/native/components/Recipes.js
                       View Walk
                     </Text>
                   </Button>

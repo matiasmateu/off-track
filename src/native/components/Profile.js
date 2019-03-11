@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, ImageBackground, StyleSheet } from 'react-native';
 import {
   Container, Content, List, ListItem, Body, Left, Text, Icon,
 } from 'native-base';
@@ -8,6 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import Header from './Header';
 
 const Profile = ({ member, logout }) => (
+  <ImageBackground source={{ uri: 'http://www.cartotalk.com/uploads/monthly_10_2015/post-14-0-92490400-1445603136.png' }} style={styles.backgroundImage}>
   <Container>
     <Content>
       <List>
@@ -98,7 +99,16 @@ const Profile = ({ member, logout }) => (
       </List>
     </Content>
   </Container>
+  </ImageBackground>
 );
+
+var styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+  },
+});
 
 Profile.propTypes = {
   member: PropTypes.shape({}),

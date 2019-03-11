@@ -42,7 +42,7 @@ const Index = (
         <Stack
           key="home"
           title={AppConfig.appName.toUpperCase()}
-          icon={() => <Icon name="planet" {...DefaultProps.icons} />}
+          icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={AboutComponent} />
@@ -50,8 +50,13 @@ const Index = (
 
         <Stack
           key="walks"
+<<<<<<< HEAD
           title="Walks"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
+=======
+          title="WALKS"
+          icon={() => <Icon name="walk" {...DefaultProps.icons} />}
+>>>>>>> design/basic-branding-layout
           {...DefaultProps.navbarProps}
         >
           <Scene key="walks" component={WalksContainer} Layout={WalksComponent} />
