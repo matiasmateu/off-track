@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon
+  Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon, ListItem
 } from 'native-base';
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
@@ -99,37 +99,37 @@ const WalkView = ({ error, walks, walkId, member }) => {
           </CardItem>
         </Card>
 
-        <Card>
+        <Card style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
           <CardItem header bordered>
             {(member && member.email)
               ? (
                 <View>
                   <Content padder>
                     <Text>BUTTON</Text>
-                    </Content>
+                  </Content>
                 </View>
               )
               : (
-                <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                <View style={{flexDirection: 'row'}}>
 
-                  <Content onPress={Actions.signUp} icon>
+                  <ListItem onPress={Actions.signUp} icon>
                     <Left>
                       <Icon name="add-circle" />
-                      <Text style={{textAlign: 'center'}} >
+                      <Text >
                         Sign Up
-                        </Text>
+                      </Text>
                     </Left>
-                  </Content>
+                  </ListItem>
 
 
-                  <Content onPress={Actions.login} icon>
+                  <ListItem onPress={Actions.login} style={{}} icon>
                     <Left>
                       <Icon name="power" />
-                      <Text style={{textAlign: 'center'}}>
+                      <Text>
                         Login
-                  </Text>
+                      </Text>
                     </Left>
-                  </Content>
+                  </ListItem>
                 </View>
               )
             }
