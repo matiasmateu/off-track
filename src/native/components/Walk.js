@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, H3, View, ListItem, Text, Left, Icon
+  Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon
 } from 'native-base';
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
@@ -109,8 +109,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
               ? (
                 <View>
                   <Content padder>
-                    {/* <Button></Button> */}
-                    BUTTON
+                    <Text>BUTTON</Text>
                     </Content>
                 </View>
               )
@@ -139,9 +138,6 @@ const WalkView = ({ error, walks, walkId, member }) => {
               )
             }
           </CardItem>
-          <CardItem>
-
-          </CardItem>
         </Card>
 
         <Spacer size={20} />
@@ -154,7 +150,7 @@ WalkView.propTypes = {
   error: PropTypes.string,
   walkId: PropTypes.string.isRequired,
   walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  member: PropTypes.shape({}).isRequired
+  member: PropTypes.shape({})
 };
 
 WalkView.defaultProps = {
