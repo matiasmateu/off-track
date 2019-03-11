@@ -28,6 +28,8 @@ const WalkView = ({ error, walks, walkId, member }) => {
   const origin = { latitude: 52.359752, longitude: 4.909249 };
   const destination = { latitude: 52.359973, longitude: 4.918052 };
   const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
+ 
+
 
   return (
     <Container>
@@ -105,7 +107,11 @@ const WalkView = ({ error, walks, walkId, member }) => {
               ? (
                 <View>
                   <Content padder>
-                    <Text>BUTTON</Text>
+                    <Button onPress={Actions.walking}>
+                      <Text>
+                        Start this walk!
+                      </Text>
+                    </Button>
                   </Content>
                 </View>
               )
