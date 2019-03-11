@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text,
+  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text, Button
 } from 'native-base';
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
 import Spacer from './Spacer';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from "react-native-maps";
+import { Actions } from 'react-native-router-flux';
 
 
 
@@ -54,6 +55,8 @@ const WalkView = ({
   const origin = {latitude: 52.359752, longitude: 4.909249};
   const destination = {latitude: 52.359973, longitude: 4.918052};
   const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
+ 
+
 
   return (
     <Container>
@@ -135,6 +138,13 @@ const WalkView = ({
 
           </CardItem>
         </Card>
+
+
+        <Button onPress={Actions.walking}>
+          <Text>
+            Start this walk!
+          </Text>
+        </Button>
 
         <Spacer size={20} />
       </Content>
