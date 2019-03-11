@@ -2,22 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, H3, List, ListItem, Text,
+  Container, Content, Card, CardItem, Body, H3, View, ListItem, Text, Left, Icon
 } from 'native-base';
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
 import Spacer from './Spacer';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from "react-native-maps";
+import { Actions } from 'react-native-router-flux';
 
 
-
-
-const WalkView = ({
-  error,
-  walks,
-  walkId,
-}) => {
+const WalkView = ({ error, walks, walkId, member }) => {
   // Error
   if (error) return <Error content={error} />;
 
@@ -26,6 +21,7 @@ const WalkView = ({
   if (walkId && walks) {
     console.log(walkId, 'walkId<=========')
     console.log(walks, 'walks<=========')
+    console.log(walks, walkId, member)
 
     walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
   }
@@ -33,26 +29,8 @@ const WalkView = ({
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
 
-  // Build Ingredients listing
-  // const ingredients = walk.ingredients.map(item => (
-  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-  //     <Text>
-  //       {item}
-  //     </Text>
-  //   </ListItem>
-  // ));
-
-  // Build Method listing
-  // const method = walk.method.map(item => (
-  //   <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
-  //     <Text>
-  //       {item}
-  //     </Text>
-  //   </ListItem>
-  // ));
-
-  const origin = {latitude: 52.359752, longitude: 4.909249};
-  const destination = {latitude: 52.359973, longitude: 4.918052};
+  const origin = { latitude: 52.359752, longitude: 4.909249 };
+  const destination = { latitude: 52.359973, longitude: 4.918052 };
   const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
 
   return (
@@ -95,13 +73,13 @@ const WalkView = ({
           <CardItem>
             <Content>
               <Text>
-                <Text style={{fontWeight: "bold"}}>Start Address: </Text> {walk.startAddress} {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>City: </Text> {walk.city} {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>Postcode: </Text> {walk.postCode} {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>Country: </Text> {walk.country} {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>Distance: </Text> {walk.length} meters {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>Steps: </Text> {walk.steps} {'\n'}{'\n'}
-                <Text style={{fontWeight: "bold"}}>Time: </Text> {walk.time} min {'\n'}
+                <Text style={{ fontWeight: "bold" }}>Start Address: </Text> {walk.startAddress} {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>City: </Text> {walk.city} {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>Postcode: </Text> {walk.postCode} {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>Country: </Text> {walk.country} {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>Distance: </Text> {walk.length} meters {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>Steps: </Text> {walk.steps} {'\n'}{'\n'}
+                <Text style={{ fontWeight: "bold" }}>Time: </Text> {walk.time} min {'\n'}
               </Text>
             </Content>
           </CardItem>
@@ -127,9 +105,39 @@ const WalkView = ({
 
         <Card>
           <CardItem header bordered>
-            <Text>
-              Sound
-            </Text>
+            {(member && member.email)
+              ? (
+                <View>
+                  <Content padder>
+                    {/* <Button></Button> */}
+                    BUTTON
+                    </Content>
+                </View>
+              )
+              : (
+                <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
+
+                  <Content onPress={Actions.signUp} icon>
+                    <Left>
+                      <Icon name="add-circle" />
+                      <Text style={{textAlign: 'center'}} >
+                        Sign Up
+                        </Text>
+                    </Left>
+                  </Content>
+
+
+                  <Content onPress={Actions.login} icon>
+                    <Left>
+                      <Icon name="power" />
+                      <Text style={{textAlign: 'center'}}>
+                        Login
+                  </Text>
+                    </Left>
+                  </Content>
+                </View>
+              )
+            }
           </CardItem>
           <CardItem>
 
@@ -146,10 +154,12 @@ WalkView.propTypes = {
   error: PropTypes.string,
   walkId: PropTypes.string.isRequired,
   walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  member: PropTypes.shape({}).isRequired
 };
 
 WalkView.defaultProps = {
   error: null,
+  member: {},
 };
 
 export default WalkView;
