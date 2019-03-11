@@ -18,15 +18,16 @@ const WalkListing = ({
   walks,
   reFetch,
 }) => {
+
   // Loading
   if (loading) return <Loading />;
 
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id;
+  const keyExtractor = item => item.id.toString();
 
-  const onPress = item => Actions.walk({ match: { params: { id: String(item.id) } } });
+  const onPress = item => Actions.walk({ match: { params: { id: Number(item.id) } } });
 
   return (
     <Container>
@@ -67,22 +68,22 @@ const WalkListing = ({
                     small
                     onPress={() => onPress(item)}
                   >
-                  <Text style={{ color: 'black' }}>
-                    View Walk
+                    <Text style={{ color: 'black' }}>
+                      View Walk
                     </Text>
                   </Button>
-                <Spacer size={20} />
+                  <Spacer size={20} />
                 </Body>
               </CardItem>
             </Card>
-      )}
+          )}
           keyExtractor={keyExtractor}
-        refreshControl={(
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
-        )}
+          refreshControl={(
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={reFetch}
+            />
+          )}
         />
 
         <Spacer size={20} />
@@ -92,7 +93,7 @@ const WalkListing = ({
 };
 
 WalkListing.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.any,
   loading: PropTypes.bool.isRequired,
   walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func,

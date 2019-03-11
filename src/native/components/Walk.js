@@ -19,10 +19,6 @@ const WalkView = ({ error, walks, walkId, member }) => {
   // Get this Walk from all walks
   let walk = null;
   if (walkId && walks) {
-    console.log(walkId, 'walkId<=========')
-    console.log(walks, 'walks<=========')
-    console.log(walks, walkId, member)
-
     walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
   }
 
@@ -148,7 +144,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
 WalkView.propTypes = {
   error: PropTypes.string,
-  walkId: PropTypes.string.isRequired,
+  walkId: PropTypes.number.isRequired,
   walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   member: PropTypes.shape({})
 };

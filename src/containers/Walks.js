@@ -49,7 +49,6 @@ class WalkListing extends Component {
   render = () => {
     const { Layout, walks, match, member } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
-    console.log(this.props, '<========')
     return (
       <Layout
         walkId={id}
