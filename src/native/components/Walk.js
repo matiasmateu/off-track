@@ -99,7 +99,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
           </CardItem>
         </Card>
 
-        <Card style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <Card style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <CardItem header bordered>
             {(member && member.email)
               ? (
@@ -110,7 +110,13 @@ const WalkView = ({ error, walks, walkId, member }) => {
                 </View>
               )
               : (
-                <View style={{flexDirection: 'row'}}>
+
+                <View>
+
+                <Content><Text style={{textAlign: 'center'}}>To go Off-Track, please:</Text></Content>
+
+
+                <View style={{ flexDirection: 'row' }}>
 
                   <ListItem onPress={Actions.signUp} icon>
                     <Left>
@@ -130,6 +136,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
                       </Text>
                     </Left>
                   </ListItem>
+                </View>
                 </View>
               )
             }
