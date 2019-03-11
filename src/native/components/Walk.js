@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon, ListItem
+  Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon, ListItem, Button
 } from 'native-base';
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
@@ -108,7 +108,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
                 <View>
                   <Content padder>
                     <Button onPress={Actions.walking}>
-                      <Text>
+                      <Text style={{color: 'black'}}>
                         Start this walk!
                       </Text>
                     </Button>
