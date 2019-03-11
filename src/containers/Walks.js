@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getRecipes, getMeals, setError } from '../actions/recipes';
+import { getWalks, getMeals, setError } from '../actions/walks';
 
-class RecipeListing extends Component {
+class WalkListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    recipes: PropTypes.shape({
+    walks: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+      walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
-    fetchRecipes: PropTypes.func.isRequired,
+    fetchWalks: PropTypes.func.isRequired,
     fetchMeals: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
   }
@@ -24,14 +24,14 @@ class RecipeListing extends Component {
     match: null,
   }
 
-  componentDidMount = () => this.fetchRecipes();
+  componentDidMount = () => this.fetchWalks();
 
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchRecipes = () => {
-    const { fetchRecipes, fetchMeals, showError } = this.props;
-    return fetchRecipes()
+  fetchWalks = () => {
+    const { fetchWalks, fetchMeals, showError } = this.props;
+    return fetchWalks()
       .then(() => fetchMeals())
       .catch((err) => {
         console.log(`Error: ${err}`);
@@ -40,29 +40,29 @@ class RecipeListing extends Component {
   }
 
   render = () => {
-    const { Layout, recipes, match } = this.props;
+    const { Layout, walks, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
-
+    console.log(this.props, '<========')
     return (
       <Layout
-        recipeId={id}
-        error={recipes.error}
-        loading={recipes.loading}
-        recipes={recipes.recipes}
-        reFetch={() => this.fetchRecipes()}
+        walkId={id}
+        error={walks.error}
+        loading={walks.loading}
+        walks={walks.walks}
+        reFetch={() => this.fetchWalks()}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes || {},
+  walks: state.walks || {},
 });
 
 const mapDispatchToProps = {
-  fetchRecipes: getRecipes,
+  fetchWalks: getWalks,
   fetchMeals: getMeals,
   showError: setError,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeListing);
+export default connect(mapStateToProps, mapDispatchToProps)(WalkListing);

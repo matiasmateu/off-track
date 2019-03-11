@@ -12,14 +12,14 @@ import {
 import { Link } from 'react-router-dom';
 import Error from './Error';
 
-const RecipeListing = ({ error, loading, recipes }) => {
+const WalkListing = ({ error, loading, walks }) => {
   // Error
   if (error) return <Error content={error} />;
 
   // Build Cards for Listing
-  const cards = recipes.map(item => (
+  const cards = walks.map(item => (
     <Card key={`${item.id}`}>
-      <Link to={`/recipe/${item.id}`}>
+      <Link to={`/walk/${item.id}`}>
         <CardImg top src={item.image} alt={item.title} />
       </Link>
       <CardBody>
@@ -29,8 +29,8 @@ const RecipeListing = ({ error, loading, recipes }) => {
         <CardText>
           {item.body}
         </CardText>
-        <Link className="btn btn-primary" to={`/recipe/${item.id}`}>
-          View Recipe
+        <Link className="btn btn-primary" to={`/walk/${item.id}`}>
+          View Walk
           {' '}
           <i className="icon-arrow-right" />
         </Link>
@@ -44,7 +44,7 @@ const RecipeListing = ({ error, loading, recipes }) => {
       <Row>
         <Col sm="12">
           <h1>
-            Recipes
+            Walks
           </h1>
           <p>
             The following data is read directly from Firebase.
@@ -60,14 +60,14 @@ const RecipeListing = ({ error, loading, recipes }) => {
   );
 };
 
-RecipeListing.propTypes = {
+WalkListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  walks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-RecipeListing.defaultProps = {
+WalkListing.defaultProps = {
   error: null,
 };
 
-export default RecipeListing;
+export default WalkListing;

@@ -1,7 +1,7 @@
 import { Firebase, FirebaseRef } from '../lib/firebase';
 
 /**
-  * Get this User's Favourite Recipes
+  * Get this User's Favourite Walks
   */
 export function getFavourites(dispatch) {
   if (Firebase === null) return () => new Promise(resolve => resolve());
@@ -22,7 +22,7 @@ export function getFavourites(dispatch) {
 }
 
 /**
-  * Reset a User's Favourite Recipes in Redux (eg for logou)
+  * Reset a User's Favourite Walks in Redux (eg for logou)
   */
 export function resetFavourites(dispatch) {
   return dispatch({
@@ -32,7 +32,7 @@ export function resetFavourites(dispatch) {
 }
 
 /**
-  * Update My Favourites Recipes
+  * Update My Favourites Walks
   */
 export function replaceFavourites(newFavourites) {
   if (Firebase === null) return () => new Promise(resolve => resolve());
@@ -66,24 +66,24 @@ export function getMeals() {
   */
 export function setError(message) {
   return dispatch => new Promise(resolve => resolve(dispatch({
-    type: 'RECIPES_ERROR',
+    type: 'WALKS_ERROR',
     data: message,
   })));
 }
 
 /**
-  * Get Recipes
+  * Get Walks
   */
-export function getRecipes() {
+export function getWalks() {
   if (Firebase === null) return () => new Promise(resolve => resolve());
 
-  return dispatch => new Promise(resolve => FirebaseRef.child('recipes')
+  return dispatch => new Promise(resolve => FirebaseRef.child('walks')
     .on('value', (snapshot) => {
-      const recipes = snapshot.val() || [];
+      const walks = snapshot.val() || [];
 
       return resolve(dispatch({
-        type: 'RECIPES_REPLACE',
-        data: recipes,
+        type: 'WALKS_REPLACE',
+        data: walks,
       }));
     })).catch(e => console.log(e));
 }

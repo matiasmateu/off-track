@@ -5,7 +5,7 @@ export default {
     { id: 1, title: '---' },
     { id: 2, title: '----- ---' },
   ],
-  recipes: [
+  walks: [
     {
       placeholder: true,
       id: 0,
