@@ -45,8 +45,7 @@ export default function walkReducer(state = initialState, action) {
           time: item.time,
           author: item.author,
           steps: item.steps,
-          image: item.image,
-          mapImage: item.mapImage
+          image: item.image
         }));
       }
 

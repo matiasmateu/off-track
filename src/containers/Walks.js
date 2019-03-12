@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 
 import { getWalks, getMeals, setError } from '../actions/walks';
 
-import { getMemberData } from '../actions/member';
-
-
 class WalkListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
@@ -18,10 +15,6 @@ class WalkListing extends Component {
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
-    member: PropTypes.shape({
-      loading: PropTypes.bool.isRequired,
-      error: PropTypes.string,
-    }).isRequired,
     fetchWalks: PropTypes.func.isRequired,
     fetchMeals: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
@@ -47,15 +40,15 @@ class WalkListing extends Component {
   }
 
   render = () => {
-    const { Layout, walks, match, member } = this.props;
+    const { Layout, walks, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
+    console.log(this.props, '<========')
     return (
       <Layout
         walkId={id}
         error={walks.error}
         loading={walks.loading}
         walks={walks.walks}
-        member={member}
         reFetch={() => this.fetchWalks()}
       />
     );
@@ -64,15 +57,12 @@ class WalkListing extends Component {
 
 const mapStateToProps = state => ({
   walks: state.walks || {},
-  member: state.member || {},
-  
 });
 
 const mapDispatchToProps = {
   fetchWalks: getWalks,
   fetchMeals: getMeals,
   showError: setError,
-  fetchData: getMemberData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalkListing);

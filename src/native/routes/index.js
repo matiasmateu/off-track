@@ -27,9 +27,6 @@ import UpdateProfileComponent from '../components/UpdateProfile';
 import MemberContainer from '../../containers/Member';
 import ProfileComponent from '../components/Profile';
 
-import WalkingContainer from '../../containers/Walking'
-import WalkingViewComponent from '../components/Walking'
-
 import AboutComponent from '../components/About';
 
 const Index = (
@@ -42,7 +39,6 @@ const Index = (
         showLabel={false}
         {...DefaultProps.tabProps}
       >
-        {/* BOTOM MENU OF THE APP */}
         <Stack
           key="home"
           title={AppConfig.appName.toUpperCase()}
@@ -112,7 +108,6 @@ const Index = (
       </Tabs>
     </Scene>
 
-
     <Scene
       back
       clone
@@ -121,15 +116,6 @@ const Index = (
       {...DefaultProps.navbarProps}
       component={WalksContainer}
       Layout={WalkViewComponent}
-    />
-    <Scene
-      back
-      clone
-      key="walking"
-      title="Walking"
-      {...DefaultProps.navbarProps}
-      component={WalkingContainer}
-      Layout={WalkingViewComponent}
     />
   </Stack>
 );
