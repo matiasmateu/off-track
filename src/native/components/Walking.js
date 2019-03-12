@@ -14,6 +14,28 @@ class WalkingViewComponent extends React.Component {
 
     state = { inLocation: false }
 
+
+    componentDidMount() {
+      playbackObject = new Audio.Sound()
+      playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    }
+
+    buttonStop = async () => {
+      await playbackObject.stopAsync()
+      await playbackObject.unloadAsync()
+      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    }
+
+    buttonPlay = async () => {
+      await playbackObject.playAsync()
+      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    }
+
+    buttonPause = async () => {
+      await playbackObject.pauseAsync()
+    }
+
+    
     render() {
 
       navigator.geolocation.getCurrentPosition(result => {
@@ -40,24 +62,6 @@ class WalkingViewComponent extends React.Component {
       longitudeDelta: 0.0009,
     };
     const breakpoints = [{ latitude: 52.339666, longitude: 4.855879 }];
-
-    playbackObject = new Audio.Sound()
-    playbackObject.loadAsync(require('./Oosterpark.mp3'))
-
-    buttonStop = async () => {
-      await playbackObject.stopAsync()
-      await playbackObject.unloadAsync()
-      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    }
-
-    buttonPlay = async () => {
-      await playbackObject.playAsync()
-      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    }
-
-    buttonPause = async () => {
-      await playbackObject.pauseAsync()
-    }
 
     return (
       <Container>
