@@ -1,56 +1,83 @@
 import React from 'react';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from 'react-native-maps';
-import { View, Image, TouchableHighlight } from 'react-native';
+import { View, Image, TouchableHighlight, Button } from 'react-native';
 import { Container, Text } from 'native-base';
-import { Audio } from 'expo'
+import { Audio, Location, Permissions } from 'expo'
 import Spacer from './Spacer'
 import geolib from 'geolib'
-// import navigator from ''
-import navigation from '../constants/navigation';
-
 
 class WalkingViewComponent extends React.Component {
 
-    state = { inLocation: false }
+  state = { inLocation: false }
 
+  checkLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+      console.error('Not Granted');
+      return;
+    } else {
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location.coords.latitude)
 
-    componentDidMount() {
-      playbackObject = new Audio.Sound()
-      playbackObject.loadAsync(require('./Oosterpark.mp3'))
+      if (geolib.isPointInCircle(
+        { latitude: location.coords.latitude, longitude: location.coords.longitude },
+        { latitude: 52.339392, longitude: 4.856258 },
+        20
+      ) === true) {
+        this.setState({ inLocation: true })
+        console.log('its truuuuue')
+      } else {
+        this.setState({ inLocation: false })
+        console.log('its faaaaalse')
+      };
+
     }
+  }
 
-    buttonStop = async () => {
-      await playbackObject.stopAsync()
-      await playbackObject.unloadAsync()
-      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+  componentDidMount() {
+    playbackObject = new Audio.Sound()
+    playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    this.checkLocationAsync()
+  }
+
+  buttonStop = async () => {
+    await playbackObject.stopAsync()
+    await playbackObject.unloadAsync()
+    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+  }
+
+  buttonPlay = async () => {
+    await playbackObject.playAsync()
+    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+  }
+
+  buttonPause = async () => {
+    await playbackObject.pauseAsync()
+  }
+
+  reloadLocationAsync = async () => {
+ 
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location.coords.latitude)
+
+      if (geolib.isPointInCircle(
+        { latitude: location.coords.latitude, longitude: location.coords.longitude },
+        { latitude: 52.339392, longitude: 4.856258 },
+        20
+      ) === true) {
+        this.setState({ inLocation: true })
+        console.log('its truuuuue')
+      } else {
+        this.setState({ inLocation: false })
+        console.log('its faaaaalse')
+      };
+
     }
+  
+  
 
-    buttonPlay = async () => {
-      await playbackObject.playAsync()
-      await playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    }
-
-    buttonPause = async () => {
-      await playbackObject.pauseAsync()
-    }
-
-    
-    render() {
-
-      navigator.geolocation.getCurrentPosition(result => {
-
-        if (geolib.isPointInCircle(
-          { latitude: result.coords.latitude, longitude: result.coords.longitude },
-          { latitude: 52.339392, longitude: 4.856258 },
-          10
-        ) === true) {
-          this.setState({inLocation: true})
-        } else {
-          this.setState({inLocation: false})
-        };
-      })
-
+  render() {
 
     const origin = { latitude: 52.339392, longitude: 4.856258 };
     const destination = { latitude: 52.338894, longitude: 4.856386 };
@@ -66,36 +93,37 @@ class WalkingViewComponent extends React.Component {
     return (
       <Container>
         {(this.state.inLocation)
-        ? (
-          <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', opacity: 0.8, top: 0, zIndex: 10 }}>
-          <Spacer size={5} />
-          <TouchableHighlight onPress={this.buttonPlay}>
-            <Image
-              style={{ width: 50, height: 50, marginRight: 10 }}
-              source={require('./buttons/play.png')}
-            />
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.buttonPause}>
-            <Image
-              style={{ width: 50, height: 50, marginRight: 10 }}
-              source={require('./buttons/pause.png')}
-            />
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.buttonStop}>
-            <Image
-              style={{ width: 50, height: 50, marginRight: 10 }}
-              source={require('./buttons/stop.png')}
-            />
-          </TouchableHighlight>
-          <Spacer size={5} />
-        </View>
-        )
-        : (
-          <View>
-          <Text>Incorrect Location</Text>
-          </View>
-        )
-      }
+          ? (
+            <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', opacity: 0.8, top: 0, zIndex: 10 }}>
+              <Spacer size={5} />
+              <TouchableHighlight onPress={this.buttonPlay}>
+                <Image
+                  style={{ width: 50, height: 50, marginRight: 10 }}
+                  source={require('./buttons/play.png')}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight onPress={this.buttonPause}>
+                <Image
+                  style={{ width: 50, height: 50, marginRight: 10 }}
+                  source={require('./buttons/pause.png')}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight onPress={this.buttonStop}>
+                <Image
+                  style={{ width: 50, height: 50, marginRight: 10 }}
+                  source={require('./buttons/stop.png')}
+                />
+              </TouchableHighlight>
+              <Spacer size={5} />
+            </View>
+          )
+          : (
+            <View>
+              <Text style={{ textAlign: 'center' }}>You Are Not In The Correct Location</Text>
+              <Button onPress={this.reloadLocationAsync} title="Reload"></Button>
+            </View>
+          )
+        }
         <MapView
           style={{ flex: 1 }}
           region={region}
@@ -119,5 +147,6 @@ class WalkingViewComponent extends React.Component {
       </Container>
 
     );
-  }};
-  export default WalkingViewComponent;
+  }
+};
+export default WalkingViewComponent;
