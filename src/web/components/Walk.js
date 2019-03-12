@@ -37,8 +37,8 @@ const WalkView = ({
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
 
-  // Build Ingredients listing
-  const ingredients = walk.ingredients.map(item => (
+  // Build Waypoints listing
+  const waypoints = walk.waypoints.map(item => (
     <ListGroupItem key={`${item}`}>
       {item}
     </ListGroupItem>
