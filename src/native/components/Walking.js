@@ -9,8 +9,39 @@ import geolib from 'geolib'
 
 class WalkingViewComponent extends React.Component {
 
-  state = { inLocation: false }
-
+    state={
+    waypointsExample: [],
+    region: {
+      latitude: 52.339306,
+      longitude: 4.856268,
+      latitudeDelta: 0.0009,
+      longitudeDelta: 0.0009,
+    },
+    inLocation: false,
+  };
+  
+  componentDidMount() {
+    // This will load the track for User and check location
+    playbackObject = new Audio.Sound()
+    playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    this.checkLocationAsync()
+    // This is going to render tha Map
+    const { walkId, walks } = this.props;
+    if (walkId && walks) {
+      const walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
+      const waypoints = walk.waypoints.map(item => item)
+      this.setState({
+        waypointsExample: waypoints,
+        region: {
+          latitude: waypoints[0].latitude,
+          longitude: waypoints[0].longitude,
+          latitudeDelta: 0.0009,
+          longitudeDelta: 0.0009,
+        },
+      });
+    }
+  }
+  
   checkLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
@@ -33,12 +64,6 @@ class WalkingViewComponent extends React.Component {
       };
 
     }
-  }
-
-  componentDidMount() {
-    playbackObject = new Audio.Sound()
-    playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    this.checkLocationAsync()
   }
 
   buttonStop = async () => {
@@ -75,23 +100,29 @@ class WalkingViewComponent extends React.Component {
 
     }
   
-  
 
   render() {
-
-    const origin = { latitude: 52.339392, longitude: 4.856258 };
-    const destination = { latitude: 52.338894, longitude: 4.856386 };
     const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
-    const region = {
-      latitude: 52.339306,
-      longitude: 4.856268,
-      latitudeDelta: 0.0009,
-      longitudeDelta: 0.0009,
+    // Creates the Origin of the Walk from the first waypoint
+    const { waypointsExample } = this.state;
+    const origin = {
+      latitude: waypointsExample[0].latitude,
+      longitude: waypointsExample[0].longitude,
     };
-    const breakpoints = [{ latitude: 52.339666, longitude: 4.855879 }];
-
+    // Creates the End of the Walk from the last waypoint
+    const { latitude, longitude } = waypointsExample[waypointsExample.length - 1];
+    const destination = {
+      latitude,
+      longitude,
+    };
+    // Creates an array of waypoints
+    const waypoints = waypointsExample.map(waypoint => ({
+      latitude: waypoint.latitude,
+      longitude: waypoint.longitude,
+    }));
+    const { region } = this.state;
     return (
-      <Container>
+            <Container>
         {(this.state.inLocation)
           ? (
             <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', opacity: 0.8, top: 0, zIndex: 10 }}>
@@ -136,7 +167,9 @@ class WalkingViewComponent extends React.Component {
             mode="walking"
             strokeWidth={3}
             strokeColor="green"
-            waypoints={breakpoints}
+
+            waypoints={waypoints}
+
             followsUserLocation
             showsCompass
             showsMyLocationButton
@@ -145,8 +178,8 @@ class WalkingViewComponent extends React.Component {
           />
         </MapView>
       </Container>
-
     );
   }
-};
-export default WalkingViewComponent;
+}
+
+export default (WalkingViewComponent);

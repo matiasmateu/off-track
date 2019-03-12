@@ -23,7 +23,6 @@ const WalkView = ({ error, walks, walkId, member }) => {
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
 
-
   return (
     <Container>
       <Content padder>
@@ -93,9 +92,16 @@ const WalkView = ({ error, walks, walkId, member }) => {
               ? (
                 <View>
                   <Content padder>
-                    <Button onPress={Actions.walking}>
+                    {/* <Button onPress={Actions.walking}> */}
+                    <Button onPress={()=>Actions.walking({ match: { params: { id: Number(walk.id) } } })}>
+
                       <Text style={{color: 'black'}}>
-                        Start this walk!
+                        Start this walk using Maps!
+                      </Text>
+                    </Button>
+                    <Button onPress={Actions.compass}>
+                      <Text style={{color: 'black'}}>
+                        Start this walk using a Compass!
                       </Text>
                     </Button>
                   </Content>
