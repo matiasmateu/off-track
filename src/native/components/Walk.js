@@ -109,7 +109,12 @@ const WalkView = ({ error, walks, walkId, member }) => {
                   <Content padder>
                     <Button onPress={Actions.walking}>
                       <Text style={{color: 'black'}}>
-                        Start this walk!
+                        Start this walk using Maps!
+                      </Text>
+                    </Button>
+                    <Button onPress={Actions.compass}>
+                      <Text style={{color: 'black'}}>
+                        Start this walk using a Compass!
                       </Text>
                     </Button>
                   </Content>
