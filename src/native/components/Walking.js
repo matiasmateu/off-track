@@ -39,7 +39,14 @@ class WalkingViewComponent extends React.Component {
       latitudeDelta: 0.0009,
       longitudeDelta: 0.0009,
     },
+
   };
+  
+  //if (this.props.walkId && this.props.walks) {
+  //  walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
+  //}
+
+  // const waypoints = walk.waypoints.map(item => item)
     
   render() {
     const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
