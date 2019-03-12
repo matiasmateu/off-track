@@ -7,8 +7,6 @@ import {
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
 import Spacer from './Spacer';
-import MapViewDirections from 'react-native-maps-directions';
-import MapView from "react-native-maps";
 import { Actions } from 'react-native-router-flux';
 
 
@@ -24,11 +22,6 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
-
-  const origin = { latitude: 52.359752, longitude: 4.909249 };
-  const destination = { latitude: 52.359973, longitude: 4.918052 };
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
- 
 
 
   return (
@@ -49,7 +42,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
         <Card>
           <CardItem header bordered>
-            <Text>
+            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
               About this walk
             </Text>
           </CardItem>
@@ -64,7 +57,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
         <Card>
           <CardItem header bordered>
-            <Text>
+            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
               Details
             </Text>
           </CardItem>
@@ -85,20 +78,13 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
         <Card>
           <CardItem header bordered>
-            <Text>
+            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
               Map
             </Text>
           </CardItem>
-          <CardItem>
-            <MapView >
-              <MapViewDirections
-                origin={origin}
-                destination={destination}
-                apikey={GOOGLE_MAPS_APIKEY}
-                mode={'walking'}
-              />
-            </MapView>
-          </CardItem>
+          <View style={{justifyContent: 'center'}}>
+            < Image source={{ uri: walk.mapImage }} style={{ height: 250, width: 350, marginLeft: 'auto', marginRight: 'auto' }} />
+          </View>
         </Card>
 
         <Card style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
