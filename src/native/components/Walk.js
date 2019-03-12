@@ -23,7 +23,6 @@ const WalkView = ({ error, walks, walkId, member }) => {
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
 
-
   return (
     <Container>
       <Content padder>
