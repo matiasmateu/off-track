@@ -41,13 +41,24 @@ class WalkingViewComponent extends React.Component {
     },
 
   };
-  
-  //if (this.props.walkId && this.props.walks) {
-  //  walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
-  //}
 
-  // const waypoints = walk.waypoints.map(item => item)
-    
+  componentDidMount() {
+    const { walkId, walks } = this.props;
+    if (walkId && walks) {
+      const walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
+      const waypoints = walk.waypoints.map(item => item)
+      this.setState({
+        waypointsExample: waypoints,
+        region: {
+          latitude: waypoints[0].latitude,
+          longitude: waypoints[0].longitude,
+          latitudeDelta: 0.0009,
+          longitudeDelta: 0.0009,
+        },
+      });
+    }
+  }
+
   render() {
     const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
     // Creates the Origin of the Walk from the first waypoint
