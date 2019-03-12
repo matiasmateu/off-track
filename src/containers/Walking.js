@@ -14,9 +14,13 @@ class WalkingContainer extends Component {
   componentDidMount = () => {};
 
   render = () => {
-    const { Layout } = this.props;
+    const { Layout, walks } = this.props;
+    const id = this.props.match.params.id
     return (
-      <Layout />
+      <Layout 
+      walks={walks.walks}
+      walkId={id}
+      />
     );
   }
 }

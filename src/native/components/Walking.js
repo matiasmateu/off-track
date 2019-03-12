@@ -6,8 +6,12 @@ import { Container } from 'native-base';
 import { Audio } from 'expo'
 import Spacer from './Spacer'
 
+const WalkingViewComponent = ({walks, walkId}) => {
+  if (walkId && walks) {
+    walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
+  }
+  const waypoints = walk.waypoints.map(item => item)
 
-const WalkingViewComponent = () => {
   const origin = { latitude: 52.339392, longitude: 4.856258 };
   const destination = { latitude: 52.338894, longitude: 4.856386 };
   const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
