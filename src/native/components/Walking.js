@@ -39,7 +39,7 @@ const WalkingViewComponent = () => {
 
   return (
     <Container>
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', position: 'absolute', opacity: 0.8, top: 0, zIndex: 10 }}>
         <Spacer size={5} />
         <TouchableHighlight onPress={this.buttonPlay}>
           <Image
