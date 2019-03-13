@@ -1,7 +1,7 @@
 import React from 'react';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from 'react-native-maps';
-import { View, Image, TouchableHighlight, Button } from 'react-native';
+import { View, Image, TouchableHighlight, Button, Modal } from 'react-native';
 import { Container, Text } from 'native-base';
 import { Audio, Location, Permissions } from 'expo'
 import Spacer from './Spacer'
@@ -13,9 +13,14 @@ class WalkingViewComponent extends React.Component {
   state = {
     realWaypoints: [{
       latitude: 0,
-      longitude: 0
+      longitude: 0,
     }],
-    region: {},
+    region: {
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
+    },
     inLocation: false,
     audio: ''
   };
@@ -45,6 +50,10 @@ class WalkingViewComponent extends React.Component {
 
     }
     // this.checkLocationAsync()
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible})
   }
 
   checkLocationAsync = async () => {
@@ -156,8 +165,32 @@ class WalkingViewComponent extends React.Component {
             )
             : (
               <View>
+                <Modal
+                animationType="fade"
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose ={ () => {
+                  Alert.alert('Modal has been closed')
+                }}>
+                <View>
                 <Text style={{ textAlign: 'center' }}>You Are Not In The Correct Location</Text>
                 <Button onPress={this.reloadLocationAsync} title="Reload"></Button>
+                <TouchableHighlight 
+                onPress = {() => {
+                  this.setModalVisible(!this.state.modalVisible)
+                }}>
+                <Text>Hide Modal</Text>
+
+                </TouchableHighlight>
+                </View>
+                </Modal>
+              
+              <TouchableHighlight 
+                onPress={() => {
+                  this.setModalVisible(true)
+                }}>
+                <Text>Show Modal</Text>
+                </TouchableHighlight>
               </View>
             )
           }
