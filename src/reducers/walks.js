@@ -47,7 +47,8 @@ export default function walkReducer(state = initialState, action) {
           steps: item.steps,
           image: item.image,
           mapImage: item.mapImage,
-          waypoints: item.waypoints
+          waypoints: item.waypoints,
+          audio: item.audio
         }));
       }
 
