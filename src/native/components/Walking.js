@@ -290,6 +290,7 @@ class WalkingViewComponent extends React.Component {
       longitudeDelta: 0,
     },
     inLocation: false,
+    audio: ''
   };
 
   componentDidMount() {
@@ -304,6 +305,7 @@ class WalkingViewComponent extends React.Component {
       playbackObject.loadAsync({uri: walk.audio})
       
       this.setState({
+        audio: walk.audio,
         realWaypoints: waypoints,
         region: {
           latitude: waypoints[0].latitude,
@@ -312,8 +314,10 @@ class WalkingViewComponent extends React.Component {
           longitudeDelta: 0.0009,
         },
       });
+      this.checkLocationAsync()
+
     }
-    this.checkLocationAsync()
+    // this.checkLocationAsync()
   }
 
   checkLocationAsync = async () => {
@@ -341,13 +345,13 @@ class WalkingViewComponent extends React.Component {
   buttonStop = async () => {
     await playbackObject.stopAsync()
     await playbackObject.unloadAsync()
-    await playbackObject.loadAsync({uri: walk.audio})
+    await playbackObject.loadAsync({uri: this.state.audio})
 
   }
 
   buttonPlay = async () => {
     await playbackObject.playAsync()
-    await playbackObject.loadAsync({uri: walk.audio})
+    await playbackObject.loadAsync({uri: this.state.audio})
   }
 
   buttonPause = async () => {
