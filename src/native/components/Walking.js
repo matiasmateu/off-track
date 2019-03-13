@@ -20,15 +20,16 @@ class WalkingViewComponent extends React.Component {
   };
 
   componentDidMount() {
-    // This will load the track for User and check location
-    playbackObject = new Audio.Sound()
-    playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    
     // This is going to render tha Map
     const { walkId, walks } = this.props;
     if (walkId && walks) {
       const walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
       const waypoints = walk.waypoints.map(item => item)
+
+          // This will load the track for User and check location
+      playbackObject = new Audio.Sound()
+      playbackObject.loadAsync({uri: walk.audio})
+      
       this.setState({
         realWaypoints: waypoints,
         region: {
@@ -67,12 +68,13 @@ class WalkingViewComponent extends React.Component {
   buttonStop = async () => {
     await playbackObject.stopAsync()
     await playbackObject.unloadAsync()
-    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    await playbackObject.loadAsync({uri: walk.audio})
+
   }
 
   buttonPlay = async () => {
     await playbackObject.playAsync()
-    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    await playbackObject.loadAsync({uri: walk.audio})
   }
 
   buttonPause = async () => {
