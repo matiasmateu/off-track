@@ -30,6 +30,9 @@ import ProfileComponent from '../components/Profile';
 import WalkingContainer from '../../containers/Walking'
 import WalkingViewComponent from '../components/Walking'
 
+import CompassContainer from '../../containers/Compass'
+import CompassView from '../components/Compass'
+
 import AboutComponent from '../components/About';
 
 const Index = (
@@ -130,6 +133,15 @@ const Index = (
       {...DefaultProps.navbarProps}
       component={WalkingContainer}
       Layout={WalkingViewComponent}
+    />
+    <Scene
+      back
+      clone
+      key="compass"
+      title="compass"
+      {...DefaultProps.navbarProps}
+      component={CompassContainer}
+      Layout={CompassView}
     />
   </Stack>
 );

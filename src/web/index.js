@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
-
 import configureStore from '../store/index';
 import * as serviceWorker from './register-service-worker';
 import Routes from './routes/index';

@@ -16,10 +16,28 @@ const SidebarNavItems = () => (
     </NavItem>
     <NavItem>
       <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
-        <i className="icon-notebook" />
+        <i className="icon-plus" />
         {' '}
         <span>
-          Walks
+          Add a new Walk
+        </span>
+      </Link>
+    </NavItem>
+    <NavItem>
+      <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
+        <i className="icon-eye" />
+        {' '}
+        <span>
+          See all Walks
+        </span>
+      </Link>
+    </NavItem>
+    <NavItem>
+      <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
+        <i className="icon-eye" />
+        {' '}
+        <span>
+          See all Users
         </span>
       </Link>
     </NavItem>

@@ -8,10 +8,6 @@ import TemplateSidebar from '../components/TemplateSidebar';
 // Routes
 import Home from '../components/Home';
 
-import WalksContainer from '../../containers/Walks';
-import WalksComponent from '../components/Walks';
-import WalkViewComponent from '../components/Walk';
-
 import SignUpContainer from '../../containers/SignUp';
 import SignUpComponent from '../components/SignUp';
 
@@ -23,6 +19,9 @@ import ForgotPasswordComponent from '../components/ForgotPassword';
 
 import UpdateProfileContainer from '../../containers/UpdateProfile';
 import UpdateProfileComponent from '../components/UpdateProfile';
+
+import NewWalkContainer from '../../containers/NewWalk';
+import NewWalkComponent from '../components/NewWalk';
 
 import Error from '../components/Error';
 
@@ -46,6 +45,15 @@ const Index = () => (
       )}
     />
     <Route
+      path="/new-walk"
+      render={props => (
+        <TemplateNothing pageTitle="Add new walk">
+          <NewWalkContainer {...props} Layout={NewWalkComponent} />
+        </TemplateNothing>
+      )}
+    />
+
+    <Route
       path="/login"
       render={props => (
         <TemplateNothing pageTitle="Login">
@@ -66,22 +74,6 @@ const Index = () => (
       render={props => (
         <TemplateSidebar pageTitle="Update Profile">
           <UpdateProfileContainer {...props} Layout={UpdateProfileComponent} />
-        </TemplateSidebar>
-      )}
-    />
-    <Route
-      path="/walks"
-      render={props => (
-        <TemplateSidebar pageTitle="Walks">
-          <WalksContainer {...props} Layout={WalksComponent} />
-        </TemplateSidebar>
-      )}
-    />
-    <Route
-      path="/walk/:id"
-      render={props => (
-        <TemplateSidebar pageTitle="Walk View">
-          <WalksContainer {...props} Layout={WalkViewComponent} />
         </TemplateSidebar>
       )}
     />

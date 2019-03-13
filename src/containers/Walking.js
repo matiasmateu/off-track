@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {Text} from 'native-base'
-
 import { getWalks, getMeals, setError } from '../actions/walks';
 
 class WalkingContainer extends Component {
     static propTypes = {
-      Layout: PropTypes.func.isRequired
+      Layout: PropTypes.func.isRequired,
     }
-
 
   componentDidMount = () => {};
 
   render = () => {
-    const { Layout } = this.props;
+    const { Layout, walks } = this.props;
+    const id = this.props.match.params.id
     return (
-      <Layout />
+      <Layout 
+      walks={walks.walks}
+      walkId={id}
+      />
     );
   }
 }
