@@ -1,7 +1,7 @@
 import React from 'react';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from 'react-native-maps';
-import { View, Image, TouchableHighlight, Button } from 'react-native';
+import { View, Image, TouchableHighlight, Button, Modal } from 'react-native';
 import { Container, Text } from 'native-base';
 import { Audio, Location, Permissions } from 'expo'
 import Spacer from './Spacer'
@@ -281,7 +281,7 @@ class WalkingViewComponent extends React.Component {
   state = {
     realWaypoints: [{
       latitude: 0,
-      longitude: 0
+      longitude: 0,
     }],
     region: {
       latitude: 0,
@@ -293,15 +293,16 @@ class WalkingViewComponent extends React.Component {
   };
 
   componentDidMount() {
-    // This will load the track for User and check location
-    playbackObject = new Audio.Sound()
-    playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    
     // This is going to render tha Map
     const { walkId, walks } = this.props;
     if (walkId && walks) {
       const walk = walks.find(item => parseInt(item.id, 10) === parseInt(walkId, 10));
       const waypoints = walk.waypoints.map(item => item)
+
+          // This will load the track for User and check location
+      playbackObject = new Audio.Sound()
+      playbackObject.loadAsync({uri: walk.audio})
+      
       this.setState({
         realWaypoints: waypoints,
         region: {
@@ -340,12 +341,13 @@ class WalkingViewComponent extends React.Component {
   buttonStop = async () => {
     await playbackObject.stopAsync()
     await playbackObject.unloadAsync()
-    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    await playbackObject.loadAsync({uri: walk.audio})
+
   }
 
   buttonPlay = async () => {
     await playbackObject.playAsync()
-    await playbackObject.loadAsync(require('./Oosterpark.mp3'))
+    await playbackObject.loadAsync({uri: walk.audio})
   }
 
   buttonPause = async () => {
@@ -425,6 +427,22 @@ class WalkingViewComponent extends React.Component {
               <View>
                 <Text style={{ textAlign: 'center', backgroundColor: '#22262E' }}>You Are Not In The Correct Location</Text>
                 <Button onPress={this.reloadLocationAsync} title="Reload"></Button>
+                <TouchableHighlight 
+                onPress = {() => {
+                  this.setModalVisible(!this.state.modalVisible)
+                }}>
+                <Text>Hide Modal</Text>
+
+                </TouchableHighlight>
+                </View>
+                </Modal>
+              
+              <TouchableHighlight 
+                onPress={() => {
+                  this.setModalVisible(true)
+                }}>
+                <Text>Show Modal</Text>
+                </TouchableHighlight>
               </View>
             )
           }
