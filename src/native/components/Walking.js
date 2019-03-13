@@ -431,22 +431,6 @@ class WalkingViewComponent extends React.Component {
               <View>
                 <Text style={{ textAlign: 'center', backgroundColor: '#22262E' }}>You Are Not In The Correct Location</Text>
                 <Button onPress={this.reloadLocationAsync} title="Reload"></Button>
-                <TouchableHighlight 
-                onPress = {() => {
-                  this.setModalVisible(!this.state.modalVisible)
-                }}>
-                <Text>Hide Modal</Text>
-
-                </TouchableHighlight>
-                </View>
-                </Modal>
-              
-              <TouchableHighlight 
-                onPress={() => {
-                  this.setModalVisible(true)
-                }}>
-                <Text>Show Modal</Text>
-                </TouchableHighlight>
               </View>
             )
           }
