@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FlatList, TouchableOpacity, RefreshControl, Image,
+  FlatList, TouchableOpacity, RefreshControl, Image, StyleSheet
 } from 'react-native';
 import {
-  Container, Content, Card, CardItem, Body, Text, Button, H3
+  Container, Content, Card, CardItem, Body, Text, Button
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
@@ -32,32 +32,32 @@ const WalkListing = ({
   const onPress = item => Actions.walk({ match: { params: { id: Number(item.id) } } });
 
   return (
-    <Container>
+    <Container style={styles.backgroundView}>
       <Content padder>
         <Header
-          title="List of Walks"
+          title="Overview"
           content="Experience a walk or get lost in one. Choose your route below to get started."
         />
 
         <FlatList
           numColumns={1}
           data={walks}
+          style={styles.backgroundView}
           renderItem={({ item }) => (
-            <Card transparent style={{ paddingHorizontal: 6 }}>
+            <Card transparent style={{ paddingHorizontal: 6 }} >
               <CardItem cardBody>
                 <TouchableOpacity onPress={() => onPress(item)} style={{ flex: 1 }}>
                   <Image
                     source={{ uri: item.image }}
                     style={{
-                      height: 290,
+                      height: 100,
                       width: null,
                       flex: 1,
-                      borderRadius: 5,
                     }}
                   />
                 </TouchableOpacity>
               </CardItem>
-              <CardItem cardBody>
+              <CardItem cardBody style={styles.cardView}>
                 <Body>
                   <Spacer size={10} />
                   <Text style={{ fontWeight: '800' }}>
@@ -105,5 +105,14 @@ WalkListing.defaultProps = {
   error: null,
   reFetch: null,
 };
+
+const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: '#303145',
+  },
+  cardView: {
+    backgroundColor: '#868DB2'
+  }
+});
 
 export default WalkListing;

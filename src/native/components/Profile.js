@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ImageBackground, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {
   Container, Content, List, ListItem, Body, Left, Text, Icon,
 } from 'native-base';
@@ -8,20 +8,17 @@ import { Actions } from 'react-native-router-flux';
 import Header from './Header';
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    alignSelf: 'stretch',
-    width: null,
-  },
   backdropView: {
-    backgroundColor: 'rgba(255,255,255,0.75)',
+    backgroundColor: '#303145',
     padding: 10,
+  },
+  backgroundView: {
+    backgroundColor: '#303145',
   },
 });
 
 const Profile = ({ member, logout }) => (
-  <ImageBackground source={{ uri: 'http://www.cartotalk.com/uploads/monthly_10_2015/post-14-0-92490400-1445603136.png' }} style={styles.backgroundImage}>
-  <Container>
+  <Container style={styles.backgroundView}>
     <Content>
       <List>
         {(member && member.email)
@@ -99,20 +96,10 @@ const Profile = ({ member, logout }) => (
             </View>
           )
         }
-        <ListItem style={styles.backdropView} onPress={Actions.locale} icon>
-          <Left>
-            <Icon name="ios-flag" />
-          </Left>
-          <Body>
-            <Text>
-              Change Language
-            </Text>
-          </Body>
-        </ListItem>
+        
       </List>
     </Content>
   </Container>
-  </ImageBackground>
 );
 Profile.propTypes = {
   member: PropTypes.shape({}),
