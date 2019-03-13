@@ -13,9 +13,14 @@ class WalkingViewComponent extends React.Component {
   state = {
     realWaypoints: [{
       latitude: 0,
-      longitude: 0
+      longitude: 0,
     }],
-    region: {},
+    region: {
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
+    },
     inLocation: false,
     modalVisible: false,
   };
