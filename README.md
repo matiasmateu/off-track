@@ -34,7 +34,7 @@ This app launches with a [React web app](https://reactjs.org/) and [React Native
 # Clone the repo
 git clone https://github.com/matiasmateu/off-track.git
 
-# Install dependencies
+#### 2. Install dependencies
 ```bash
 npm install
 ```
