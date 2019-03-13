@@ -26,7 +26,7 @@ This app launches with a [React web app](https://reactjs.org/) and [React Native
     - [Expo]
 - __User authentication
     [Firebase]
-- __API/Data example__
+- __API
     [Firebase]
 ---
 # Usage
