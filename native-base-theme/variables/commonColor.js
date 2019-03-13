@@ -95,7 +95,7 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: platform === "ios" ? "#CDFE49" : "#CDFE49",
+  brandPrimary: platform === "ios" ? "#22262E" : "#22262E",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
@@ -221,7 +221,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
+  textColor: "#D9DFFF",
   inverseTextColor: "#fff",
   noteFontSize: 14,
   get defaultTextColor() {
