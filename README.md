@@ -26,12 +26,12 @@ This app launches with a [React web app](https://reactjs.org/) and [React Native
 - __API/Data example__
     [Firebase]
 ---
+# Usage
 
-## 🚀 Getting Started
 
 #### 1. Clone and Install
 
-# Clone the repo
+
 git clone https://github.com/matiasmateu/off-track.git
 
 #### 2. Install dependencies
