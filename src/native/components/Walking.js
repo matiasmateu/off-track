@@ -45,10 +45,11 @@ class WalkingViewComponent extends React.Component {
   checkLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      console.error('Not Granted');
-      return;
+      throw new Error('Location permission not granted')
     } else {
-      let location = await Location.getCurrentPositionAsync({});
+
+      let location = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
+
 
       if (geolib.isPointInCircle(
         { latitude: location.coords.latitude, longitude: location.coords.longitude },
