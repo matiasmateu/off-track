@@ -48,7 +48,7 @@ class WalkingViewComponent extends React.Component {
     // This will load the track for User and check location
     playbackObject = new Audio.Sound()
     playbackObject.loadAsync(require('./Oosterpark.mp3'))
-    this.checkLocationAsync()
+    
     // This is going to render tha Map
     const { walkId, walks } = this.props;
     if (walkId && walks) {
@@ -64,6 +64,7 @@ class WalkingViewComponent extends React.Component {
         },
       });
     }
+    this.checkLocationAsync()
   }
 
   checkLocationAsync = async () => {
@@ -73,18 +74,15 @@ class WalkingViewComponent extends React.Component {
       return;
     } else {
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location.coords.latitude)
 
       if (geolib.isPointInCircle(
         { latitude: location.coords.latitude, longitude: location.coords.longitude },
-        { latitude: this.state.waypointsExample[0].latitude, longitude: this.state.waypointsExample[0].longtitude },
+        { latitude: this.state.waypointsExample[0].latitude, longitude: this.state.waypointsExample[0].longitude },
         20
       ) === true) {
         this.setState({ inLocation: true })
-        console.log('its truuuuue')
       } else {
         this.setState({ inLocation: false })
-        console.log('its faaaaalse')
       };
 
     }
@@ -108,18 +106,15 @@ class WalkingViewComponent extends React.Component {
   reloadLocationAsync = async () => {
 
     let location = await Location.getCurrentPositionAsync({});
-    console.log(location.coords.latitude)
 
     if (geolib.isPointInCircle(
       { latitude: location.coords.latitude, longitude: location.coords.longitude },
-      { latitude: 52.339392, longitude: 4.856258 },
+      { latitude: this.state.waypointsExample[0].latitude, longitude: this.state.waypointsExample[0].longitude },
       20
     ) === true) {
       this.setState({ inLocation: true })
-      console.log('its truuuuue')
     } else {
       this.setState({ inLocation: false })
-      console.log('its faaaaalse')
     };
 
   }
