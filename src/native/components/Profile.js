@@ -96,16 +96,7 @@ const Profile = ({ member, logout }) => (
             </View>
           )
         }
-        <ListItem style={styles.backdropView} onPress={Actions.locale} icon>
-          <Left>
-            <Icon name="ios-flag" />
-          </Left>
-          <Body>
-            <Text>
-              Change Language
-            </Text>
-          </Body>
-        </ListItem>
+        
       </List>
     </Content>
   </Container>
