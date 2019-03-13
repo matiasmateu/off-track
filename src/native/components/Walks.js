@@ -25,7 +25,9 @@ const WalkListing = ({
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id.toString();
+  // const keyExtractor = item => item.id.toString();
+  // console.log('item:', item);
+ 
 
   const onPress = item => Actions.walk({ match: { params: { id: Number(item.id) } } });
 
@@ -77,7 +79,7 @@ const WalkListing = ({
               </CardItem>
             </Card>
           )}
-          keyExtractor={keyExtractor}
+          // keyExtractor={keyExtractor}
           refreshControl={(
             <RefreshControl
               refreshing={loading}
