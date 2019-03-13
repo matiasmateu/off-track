@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Platform, Linking } from 'react-native';
 import {
   Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon, ListItem, Button
 } from 'native-base';
@@ -22,6 +22,15 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
+
+  const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+  const latLng = `${walk.latitude},${walk.longtitude}`;
+  const label = `${walk.name}`;
+
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`
+  });
 
   return (
     <Container style={styles.backgroundView}>
@@ -67,7 +76,7 @@ const WalkView = ({ error, walks, walkId, member }) => {
                 <Text style={{ fontWeight: "bold", color: 'black' }}>Distance: </Text> {walk.length} meters {'\n'}
                 <Text style={{ fontWeight: "bold", color: 'black' }}>Start Address: </Text> {walk.startAddress} {'\n'}
               </Text>
-              <Button style={{ backgroundColor: '#22262E' }}><Text style={{ color: '#D9DFFF' }}>Take Me There</Text></Button>
+              <Button style={{ backgroundColor: '#22262E' }} onPress={() => Linking.openURL(url)}><Text style={{ color: '#D9DFFF' }}>Take Me There</Text></Button>
             </Content>
           </CardItem>
         </Card>
