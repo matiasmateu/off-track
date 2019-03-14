@@ -63,3 +63,6 @@ npm run web
 ```
 
 ---
+# Architecture
+
+<img src="https://firebasestorage.googleapis.com/v0/b/off-track.appspot.com/o/architecture.png?alt=media&token=48ac644e-0773-4e62-bf0f-acffde9ca017" alt="arch" />
