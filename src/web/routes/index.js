@@ -23,6 +23,9 @@ import UpdateProfileComponent from '../components/UpdateProfile';
 import NewWalkContainer from '../../containers/NewWalk';
 import NewWalkComponent from '../components/NewWalk';
 
+import WalksContainer from '../../containers/WalksList';
+import WalksComponent from '../components/WalksList';
+
 import Error from '../components/Error';
 
 const Index = () => (
@@ -45,11 +48,11 @@ const Index = () => (
       )}
     />
     <Route
-      path="/new-walk"
+      path="/newwalk"
       render={props => (
-        <TemplateNothing pageTitle="Add new walk">
+        <TemplateSidebar pageTitle="Add new walk">
           <NewWalkContainer {...props} Layout={NewWalkComponent} />
-        </TemplateNothing>
+        </TemplateSidebar>
       )}
     />
 
@@ -74,6 +77,14 @@ const Index = () => (
       render={props => (
         <TemplateSidebar pageTitle="Update Profile">
           <UpdateProfileContainer {...props} Layout={UpdateProfileComponent} />
+        </TemplateSidebar>
+      )}
+    />
+    <Route
+      path="/walks"
+      render={props => (
+        <TemplateSidebar pageTitle="Walks List">
+          <WalksContainer {...props} Layout={WalksComponent} />
         </TemplateSidebar>
       )}
     />
