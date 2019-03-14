@@ -440,6 +440,7 @@ class WalkingViewComponent extends React.Component {
             provider={PROVIDER_GOOGLE}
             customMapStyle={mapStyle}
             showsUserLocation
+            animateCamera
           >
           <Marker
           coordinate={origin}
