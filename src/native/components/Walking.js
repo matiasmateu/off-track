@@ -400,6 +400,7 @@ class WalkingViewComponent extends React.Component {
         longitude: waypoint.longitude,
       }));
       const { region } = this.state;
+      
       return (
         <Container>
           {(this.state.inLocation)
@@ -441,11 +442,25 @@ class WalkingViewComponent extends React.Component {
             customMapStyle={mapStyle}
             showsUserLocation
           >
-          <Marker
+          {/* <Marker
           coordinate={origin}
           title='Start Point'
           description='Please go here to go Off-Track'
+          /> */}
+          {this.state.realWaypoints.map((waypoint,index)=>{
+
+          return(<MapView.Marker
+          key={index}
+          coordinate={
+            {latitude: waypoint.latitude,
+            longitude: waypoint.longitude}
+          }
+          title={waypoint.address}
+          description={waypoint.direction}
+          
           />
+          )
+          })}
             <MapViewDirections
               origin={origin}
               destination={destination}
