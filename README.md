@@ -2,8 +2,8 @@
 
 #### WE ARE THE FIRST COMBINING MUSIC, URBAN NATURE, EXERCISE & MEDITATION IN ONE. 
 
-<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack2.png" alt="screenshot2" width="400px"></img>
-<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack1.png" alt="screenshot1" width="400px"></img>
+<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack1.png" alt="screenshot2" width="400px"></img>
+<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack2.png" alt="screenshot1" width="400px"></img>
 
 ---
 
