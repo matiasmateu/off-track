@@ -9,6 +9,9 @@
       "ios",
       "android"
     ],
+    "android":{
+      "package":"com.offtrack.offtrack"
+    }
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/images/app-icon.png",
