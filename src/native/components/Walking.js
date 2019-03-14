@@ -1,7 +1,7 @@
 import React from 'react';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView from 'react-native-maps';
-import { View, Image, TouchableHighlight, Button, Modal } from 'react-native';
+import { View, Image, TouchableHighlight, Button } from 'react-native';
 import { Container, Text } from 'native-base';
 import { Audio, Location, Permissions } from 'expo'
 import Spacer from './Spacer'
@@ -440,7 +440,6 @@ class WalkingViewComponent extends React.Component {
             provider={PROVIDER_GOOGLE}
             customMapStyle={mapStyle}
             showsUserLocation
-            animateCamera
           >
           <Marker
           coordinate={origin}
