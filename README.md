@@ -2,8 +2,8 @@
 
 #### WE ARE THE FIRST COMBINING MUSIC, URBAN NATURE, EXERCISE & MEDITATION IN ONE. 
 
-<img src="https://firebasestorage.googleapis.com/v0/b/off-track.appspot.com/o/offtrack2.png?alt=media&token=16aec32c-5025-4491-8564-b860cc2f40ca" alt="screenshot2" width="400px"></img>
-<img src="https://firebasestorage.googleapis.com/v0/b/off-track.appspot.com/o/offtrack1.png?alt=media&token=fd617a71-81e4-4481-9bb7-0317304d4d39" alt="screenshot1" width="400px"></img>
+<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack2.png" alt="screenshot2" width="400px"></img>
+<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/offtrack1.png" alt="screenshot1" width="400px"></img>
 
 ---
 
@@ -65,4 +65,4 @@ npm run web
 ---
 # Architecture
 
-<img src="https://firebasestorage.googleapis.com/v0/b/off-track.appspot.com/o/architecture.png?alt=media&token=48ac644e-0773-4e62-bf0f-acffde9ca017" alt="arch" />
+<img src="https://github.com/matiasmateu/off-track/blob/master/src/images/architecture.png" alt="arch" />
