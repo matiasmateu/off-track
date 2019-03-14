@@ -15,7 +15,7 @@ const SidebarNavItems = () => (
       </Link>
     </NavItem>
     <NavItem>
-      <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
+      <Link className={`nav-link ${window.location.pathname.startsWith('/newwalk') && 'active'}`} to="/newwalk">
         <i className="icon-plus" />
         {' '}
         <span>
@@ -24,7 +24,7 @@ const SidebarNavItems = () => (
       </Link>
     </NavItem>
     <NavItem>
-      <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
+      <Link className={`nav-link ${window.location.pathname.startsWith('/walks') && 'active'}`} to="/walks">
         <i className="icon-eye" />
         {' '}
         <span>
@@ -32,15 +32,7 @@ const SidebarNavItems = () => (
         </span>
       </Link>
     </NavItem>
-    <NavItem>
-      <Link className={`nav-link ${window.location.pathname.startsWith('/walk') && 'active'}`} to="/walks">
-        <i className="icon-eye" />
-        {' '}
-        <span>
-          See all Users
-        </span>
-      </Link>
-    </NavItem>
+
   </div>
 );
 

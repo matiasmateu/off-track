@@ -91,3 +91,20 @@ export function getWalks() {
 export function addWalk() {
   return 'Walk Added';
 }
+
+/**
+  * fetch Walks
+  */
+export function fetchWalks() {
+    if (Firebase === null) return () => new Promise(resolve => resolve());
+
+  return dispatch => new Promise(resolve => FirebaseRef.child('walks')
+    .on('value', (snapshot) => {
+      const walks = snapshot.val() || [];
+
+      return resolve(dispatch({
+        type: 'WALKS_REPLACE',
+        data: walks,
+      }));
+    })).catch(e => console.log(e));
+}
