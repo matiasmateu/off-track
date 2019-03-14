@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet } from 'react-native';
 import {
   Container, Content, Text, Form, Item, Label, Input, Button,
 } from 'native-base';
@@ -53,7 +54,7 @@ class SignUp extends React.Component {
     if (loading) return <Loading />;
 
     return (
-      <Container>
+      <Container style={styles.backgroundView}>
         <Content padder>
           <Header
             title="Welcome"
@@ -64,21 +65,21 @@ class SignUp extends React.Component {
 
           <Form>
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 First Name
               </Label>
               <Input onChangeText={v => this.handleChange('firstName', v)} />
             </Item>
 
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 Last Name
               </Label>
               <Input onChangeText={v => this.handleChange('lastName', v)} />
             </Item>
 
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 Email
               </Label>
               <Input
@@ -89,14 +90,14 @@ class SignUp extends React.Component {
             </Item>
 
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 Password
               </Label>
               <Input secureTextEntry onChangeText={v => this.handleChange('password', v)} />
             </Item>
 
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 Confirm Password
               </Label>
               <Input secureTextEntry onChangeText={v => this.handleChange('password2', v)} />
@@ -115,5 +116,14 @@ class SignUp extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: '#303145',
+  },
+  labelText: {
+    color: '#D9DFFF'
+  },
+});
 
 export default SignUp;

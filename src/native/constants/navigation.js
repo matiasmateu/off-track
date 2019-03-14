@@ -2,9 +2,9 @@ import Colors from '../../../native-base-theme/variables/commonColor';
 
 export default {
   navbarProps: {
-    navigationBarStyle: { backgroundColor: '#CDFE49' },
+    navigationBarStyle: { backgroundColor: '#22262E' },
     titleStyle: {
-      color: Colors.textColor,
+      color: '#D9DFFF',
       alignSelf: 'center',
       letterSpacing: 2,
       fontSize: Colors.fontSizeBase,
@@ -20,6 +20,6 @@ export default {
   },
 
   icons: {
-    style: { color: 'black', height: 30, width: 30 },
+    style: { color: '#D9DFFF', height: 30, width: 30 },
   },
 };

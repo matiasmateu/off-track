@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet } from 'react-native';
+
 import {
   Container, Content, Form, Item, Label, Input, Text, Button, View,
 } from 'native-base';
@@ -65,7 +67,7 @@ class Login extends React.Component {
     if (loading) return <Loading />;
 
     return (
-      <Container>
+      <Container style={styles.backgroundView}>
         <Content>
           <View padder>
             <Header
@@ -78,7 +80,7 @@ class Login extends React.Component {
 
           <Form>
             <Item stackedLabel>
-              <Label>
+              <Label style={{color: '#D9DFFF'}}>
                 {translate('Email', locale)}
               </Label>
               <Input
@@ -89,7 +91,7 @@ class Login extends React.Component {
               />
             </Item>
             <Item stackedLabel>
-              <Label>
+              <Label style={{color: '#D9DFFF'}}>
                 {translate('Password', locale)}
               </Label>
               <Input
@@ -113,5 +115,11 @@ class Login extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: '#303145',
+  },
+});
 
 export default Login;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'react-native';
+import { Image, StyleSheet, Platform, Linking } from 'react-native';
 import {
   Container, Content, Card, CardItem, Body, H3, View, Text, Left, Icon, ListItem, Button
 } from 'native-base';
@@ -23,8 +23,17 @@ const WalkView = ({ error, walks, walkId, member }) => {
   // Walk not found
   if (!walk) return <Error content={ErrorMessages.walk404} />;
 
+  const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+  const latLng = `${walk.latitude},${walk.longtitude}`;
+  const label = `${walk.name}`;
+
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`
+  });
+
   return (
-    <Container>
+    <Container style={styles.backgroundView}>
       <Content padder>
         <Image source={{ uri: walk.picture }} style={{ height: 300, width: null, flex: 1 }} />
 
@@ -40,14 +49,14 @@ const WalkView = ({ error, walks, walkId, member }) => {
         <Spacer size={15} />
 
         <Card>
-          <CardItem header bordered>
-            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
+          <CardItem header bordered style={styles.cardView}>
+            <Text style={{ textShadowColor: 'gray', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 1 }}>
               About this walk
             </Text>
           </CardItem>
-          <CardItem>
+          <CardItem style={styles.cardView}>
             <Body>
-              <Text>
+              <Text style={{ color: 'black' }}>
                 {walk.fullDescription}
               </Text>
             </Body>
@@ -55,53 +64,43 @@ const WalkView = ({ error, walks, walkId, member }) => {
         </Card>
 
         <Card>
-          <CardItem header bordered>
-            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
+          <CardItem header bordered style={styles.cardView}>
+            <Text style={{ textShadowColor: 'gray', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 1 }}>
               Details
             </Text>
           </CardItem>
-          <CardItem>
+          <CardItem style={styles.cardView}>
             <Content>
-              <Text>
-                <Text style={{ fontWeight: "bold" }}>Start Address: </Text> {walk.startAddress} {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>City: </Text> {walk.city} {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>Postcode: </Text> {walk.postCode} {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>Country: </Text> {walk.country} {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>Distance: </Text> {walk.length} meters {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>Steps: </Text> {walk.steps} {'\n'}{'\n'}
-                <Text style={{ fontWeight: "bold" }}>Time: </Text> {walk.time} min {'\n'}
+              <Text style={{ color: 'black' }}>
+                <Text style={{ fontWeight: "bold", color: 'black' }}>Time: </Text> {walk.time} min {'\n'}
+                <Text style={{ fontWeight: "bold", color: 'black' }}>Distance: </Text> {walk.length} meters {'\n'}
+                <Text style={{ fontWeight: "bold", color: 'black' }}>Start Address: </Text> {walk.startAddress} {'\n'}
               </Text>
+              <Button style={{ backgroundColor: '#22262E' }} onPress={() => Linking.openURL(url)}><Text style={{ color: '#D9DFFF' }}>Take Me There</Text></Button>
             </Content>
           </CardItem>
         </Card>
 
         <Card>
-          <CardItem header bordered>
-            <Text style={{  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1},textShadowRadius: 1}}>
+          <CardItem header bordered style={styles.cardView}>
+            <Text style={{ textShadowColor: 'gray', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 1 }}>
               Map
             </Text>
           </CardItem>
-          <View style={{justifyContent: 'center'}}>
+          <View style={{ justifyContent: 'center' }}>
             < Image source={{ uri: walk.mapImage }} style={{ height: 250, width: 350, marginLeft: 'auto', marginRight: 'auto' }} />
           </View>
         </Card>
 
         <Card style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-          <CardItem header bordered>
+          <CardItem header bordered style={styles.cardView}>
             {(member && member.email)
               ? (
-                <View>
+                <View style={{ alignItems: 'center' }}>
                   <Content padder>
-                    {/* <Button onPress={Actions.walking}> */}
-                    <Button onPress={()=>Actions.walking({ match: { params: { id: Number(walk.id) } } })}>
-
-                      <Text style={{color: 'black'}}>
-                        Start this walk using Maps!
-                      </Text>
-                    </Button>
-                    <Button onPress={Actions.compass}>
-                      <Text style={{color: 'black'}}>
-                        Start this walk using a Compass!
+                    <Button onPress={() => Actions.walking({ match: { params: { id: Number(walk.id) } } })} style={{ backgroundColor: '#22262E', textAlign: 'center', alignContent: 'center' }}>
+                      <Text style={{ color: '#D9DFFF' }}>
+                        Start
                       </Text>
                     </Button>
                   </Content>
@@ -111,33 +110,47 @@ const WalkView = ({ error, walks, walkId, member }) => {
 
                 <View>
 
-                <Content><Text style={{textAlign: 'center'}}>To go Off-Track, please:</Text></Content>
+                  <Content><Text style={{ textAlign: 'center' }}>To go Off-Track, please:</Text></Content>
 
 
-                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ flexDirection: 'row' }}>
 
-                  <ListItem onPress={Actions.signUp} icon>
-                    <Left>
-                      <Icon name="add-circle" />
-                      <Text >
-                        Sign Up
+                    <ListItem onPress={Actions.signUp} icon>
+                      <Left>
+                        <Icon name="add-circle" />
+                        <Text >
+                          Sign Up
                       </Text>
-                    </Left>
-                  </ListItem>
+                      </Left>
+                    </ListItem>
 
 
-                  <ListItem onPress={Actions.login} style={{}} icon>
-                    <Left>
-                      <Icon name="power" />
-                      <Text>
-                        Login
+                    <ListItem onPress={Actions.login} style={{}} icon>
+                      <Left>
+                        <Icon name="power" />
+                        <Text>
+                          Login
                       </Text>
-                    </Left>
-                  </ListItem>
-                </View>
+                      </Left>
+                    </ListItem>
+                  </View>
                 </View>
               )
             }
+          </CardItem>
+        </Card>
+
+        <Card style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <CardItem header bordered style={styles.cardView}>
+            <View style={{ alignItems: 'center' }}>
+              <Content padder>
+                <Button onPress={Actions.compass} style={{ backgroundColor: '#22262E', textAlign: 'center', alignContent: 'center', justifyContent: 'center' }}>
+                  <Text style={{ color: '#D9DFFF' }}>
+                    Compass (BETA)
+                  </Text>
+                </Button>
+              </Content>
+            </View>
           </CardItem>
         </Card>
 
@@ -158,5 +171,14 @@ WalkView.defaultProps = {
   error: null,
   member: {},
 };
+
+const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: '#303145',
+  },
+  cardView: {
+    backgroundColor: '#868DB2'
+  }
+});
 
 export default WalkView;
