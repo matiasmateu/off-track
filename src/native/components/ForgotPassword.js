@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet } from 'react-native';
+
 import {
   Container, Content, Text, Form, Item, Label, Input, Button,
 } from 'native-base';
@@ -55,7 +57,7 @@ class ForgotPassword extends React.Component {
     if (loading) return <Loading />;
 
     return (
-      <Container>
+      <Container style={styles.backgroundView}>
         <Content padder>
           <Header
             title="Reset your Password"
@@ -66,7 +68,7 @@ class ForgotPassword extends React.Component {
 
           <Form>
             <Item stackedLabel>
-              <Label>
+              <Label style={styles.labelText}>
                 Email
               </Label>
               <Input
@@ -90,5 +92,14 @@ class ForgotPassword extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: '#303145',
+  },
+  labelText: {
+    color: '#D9DFFF'
+  },
+});
 
 export default ForgotPassword;
