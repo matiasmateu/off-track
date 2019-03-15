@@ -13,6 +13,7 @@
 - **[Technologies used](#technologies-used)**
 - **[Usage](#usage)**
 - **[Architecture](#architecture)**
+- **[Agile workflow and trello board](#my-agile-workflow-and-trello-board)**
 
 ---
 
@@ -75,3 +76,9 @@ npm run web
 # Architecture
 
 <img src="https://github.com/matiasmateu/off-track/blob/master/src/images/architecture.png" alt="arch" />
+
+---
+# Agile workflow and trello board
+We split up the tasks and try to build this project in an iterative and incremental way!
+
+**[Check out our trelloboard here](https://trello.com/b/3AGbXKba/off-track)**
