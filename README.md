@@ -11,6 +11,8 @@
 ## Table of contents:
 
 - **[Technologies used](#technologies-used)**
+- **[Usage](#usage)**
+- **[Architecture](#architecture)**
 
 ---
 
