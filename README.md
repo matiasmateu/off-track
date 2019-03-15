@@ -8,7 +8,13 @@
 
 ---
 
-## Intro
+## Table of contents:
+
+- **[Technologies used](#technologies-used)**
+
+---
+
+## Technologies used
 
 This app launches with a [React web app](https://reactjs.org/) and [React Native app](https://facebook.github.io/react-native/) sharing a single code base. It shares the 'business logic' (_i.e. actions, containers, reducers_) across the platforms, whilst allowing flexibility in View components to ensure your project looks and feels native in each platform.
 
