@@ -39,7 +39,7 @@ This app launches with a [React web app](https://reactjs.org/) and [React Native
 - __API
     [Firebase]
 ---
-# Usage
+## Usage
 
 
 #### 1. Clone and Install
@@ -73,12 +73,12 @@ npm run web
 ```
 
 ---
-# Architecture
+## Architecture
 
 <img src="https://github.com/matiasmateu/off-track/blob/master/src/images/architecture.png" alt="arch" />
 
 ---
-# Agile workflow and trello board
+## Agile workflow and trello board
 We split up the tasks and try to build this project in an iterative and incremental way!
 
 **[Check out our trelloboard here](https://trello.com/b/3AGbXKba/off-track)**
