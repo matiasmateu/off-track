@@ -381,7 +381,7 @@ class WalkingViewComponent extends React.Component {
 
 
 
-      const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
+      const GOOGLE_MAPS_APIKEY = '';
       // Creates the Origin of the Walk from the first waypoint
       const { realWaypoints } = this.state;
       const origin = {

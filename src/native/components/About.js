@@ -6,7 +6,7 @@ import {
 import Spacer from './Spacer';
 import MapViewDirections from 'react-native-maps-directions';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-const GOOGLE_MAPS_APIKEY = 'AIzaSyAqWBhyYy08dnCCA2Uf4Nq8GzHeyZ6NdSU';
+const GOOGLE_MAPS_APIKEY = '';
 
 mapStyle = [
   {
